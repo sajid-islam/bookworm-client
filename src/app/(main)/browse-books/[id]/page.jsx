@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaBackward } from "react-icons/fa";
+import AddReviewModal from "../components/AddReviewModal";
+import ReviewsList from "../components/ReviewList";
 
 const BookDetail = () => {
     const { id } = useParams();
@@ -97,7 +99,7 @@ const BookDetail = () => {
                             <Button
                                 variant="default"
                                 size="lg"
-                                className="flex-1"
+                                className="md:flex-1"
                                 onClick={() => alert(`Added "${book?.title}" to Want to Read`)}
                             >
                                 <Plus />
@@ -106,15 +108,17 @@ const BookDetail = () => {
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="flex-1"
+                                className="md:flex-1"
                                 onClick={() => router.back()}
                             >
                                 <FaBackward />
                                 Back to Browse
                             </Button>
+                            <AddReviewModal bookId={id} />
                         </div>
                     </div>
                 </div>
+                <ReviewsList bookId={id} />
             </div>
         </div>
     );
