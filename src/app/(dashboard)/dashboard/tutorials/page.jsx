@@ -19,6 +19,7 @@ import { Switch } from "@/components/ui/switch";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
+import Loader from "@/components/Loader/Loader";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -29,6 +30,9 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { PlayCircle } from "lucide-react";
+import Link from "next/link";
+import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 
 const ManageTutorials = () => {
     const [tutorials, setTutorials] = useState([]);
@@ -103,7 +107,7 @@ const ManageTutorials = () => {
     };
 
     if (loading) {
-        return <div className="text-center py-10 text-gray-500">Loading tutorials...</div>;
+        return <Loader />;
     }
 
     if (!tutorials.length) {
@@ -111,8 +115,16 @@ const ManageTutorials = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-6">
-            <h1 className="text-2xl font-bold mb-6">Manage Tutorials</h1>
+        <div className="px-4 py-6">
+            <DashboardHeader page={"Mange Tutorials"} />
+            <div className="w-full flex justify-end mb-5">
+                <Link href={"/dashboard/add-video"}>
+                    <Button className="flex items-center gap-2">
+                        <PlayCircle className="h-4 w-4" />
+                        Add Tutorial
+                    </Button>
+                </Link>
+            </div>
 
             <div className="overflow-x-auto">
                 <Table>
