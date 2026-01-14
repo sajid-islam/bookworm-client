@@ -18,10 +18,29 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar";
 import useUser from "@/hooks/useUser";
+import axios from "@/services/axiosInstance";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import Cookies from "universal-cookie";
 
 export function NavUser() {
     const { isMobile } = useSidebar();
     const { user } = useUser();
+    const router = useRouter();
+
+    const cookies = new Cookies(null, { path: "/" });
+
+    const handleLogout = async () => {
+        try {
+            await axios.delete("/user/logout");
+            toast.success("Logged out successfully!");
+            cookies.remove("user");
+            router.push("/login");
+        } catch (error) {
+            console.error("Logout failed", error);
+            toast.error("Logout failed, try again!");
+        }
+    };
 
     return (
         <SidebarMenu>
@@ -63,7 +82,7 @@ export function NavUser() {
                         </DropdownMenuLabel>
 
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={handleLogout}>
                             <LogOut />
                             Log out
                         </DropdownMenuItem>
