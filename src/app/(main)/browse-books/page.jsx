@@ -58,10 +58,12 @@ const BrowseBooks = () => {
                             <div>
                                 <h2 className="text-lg font-semibold">{book.title}</h2>
                                 <p className="text-sm text-gray-500 mt-1">
-                                    <span className="font-medium">Author:</span> {book.author}
+                                    <span className="font-medium text-black">Author:</span>{" "}
+                                    {book.author}
                                 </p>
                                 <p className="text-sm text-gray-500 mt-1">
-                                    <span className="font-medium">Genre:</span> {book.genre?.name}
+                                    <span className="font-medium text-black">Genre:</span>{" "}
+                                    {book.genre?.name}
                                 </p>
                             </div>
 
@@ -74,7 +76,7 @@ const BrowseBooks = () => {
                                 >
                                     Want to Read
                                 </Button>
-                                <Link href={`/books/${book._id}`} className="flex-1">
+                                <Link href={`/browse-books/${book._id}`} className="flex-1">
                                     <Button size="sm" className="w-full">
                                         View Details
                                     </Button>
