@@ -17,6 +17,8 @@ import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { ListCheck } from "lucide-react";
+import Link from "next/link";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 
 const ManageGenres = () => {
@@ -79,7 +81,14 @@ const ManageGenres = () => {
     return (
         <div className="px-4 py-6">
             <DashboardHeader page={"Manage Genres"} />
-
+            <div className="w-full flex justify-end mb-5">
+                <Link href={"/dashboard/create-genre"}>
+                    <Button className="flex items-center gap-2">
+                        <ListCheck className="h-4 w-4" />
+                        Create Genre
+                    </Button>
+                </Link>
+            </div>
             <div className="overflow-x-auto max-w-2xl mx-auto">
                 <Table>
                     <TableHeader>

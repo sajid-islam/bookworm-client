@@ -37,6 +37,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { BookOpen } from "lucide-react";
+import Link from "next/link";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 
 const ManageBooks = () => {
@@ -116,7 +118,14 @@ const ManageBooks = () => {
     return (
         <div className="px-4 py-6">
             <DashboardHeader page={"Manage Books"} />
-
+            <div className="w-full flex justify-end mb-5">
+                <Link href={"/dashboard/create-book"}>
+                    <Button className="flex items-center gap-2">
+                        <BookOpen className="h-4 w-4" />
+                        Create Book
+                    </Button>
+                </Link>
+            </div>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHeader>

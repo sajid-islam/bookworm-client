@@ -1,16 +1,32 @@
 "use client";
 
-import { FaSignOutAlt, FaUser } from "react-icons/fa";
-
 import useUser from "@/hooks/useUser";
+import axios from "@/services/axiosInstance";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaSignOutAlt, FaUser } from "react-icons/fa";
+import { toast } from "sonner";
+import Cookies from "universal-cookie";
 
 export default function UserButton() {
     const [open, setOpen] = useState(false);
     const { user } = useUser();
     const router = useRouter();
+
+    const cookies = new Cookies(null, { path: "/" });
+
+    const handleLogout = async () => {
+        try {
+            await axios.delete("/user/logout");
+            cookies.remove("user");
+            toast.success("Logged out successfully!");
+            router.push("/login");
+        } catch (error) {
+            console.error("Logout failed", error);
+            toast.error("Logout failed, try again!");
+        }
+    };
 
     return (
         <div className="relative">
@@ -45,7 +61,10 @@ export default function UserButton() {
                     >
                         <FaUser className="mr-2" /> Dashboard
                     </button>
-                    <button className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                    <button
+                        onClick={handleLogout}
+                        className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                    >
                         <FaSignOutAlt className="mr-2" /> Logout
                     </button>
                 </div>
