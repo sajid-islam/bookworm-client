@@ -17,6 +17,7 @@ import axios from "@/services/axiosInstance";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 
 import { SpinLoader } from "@/components/Loader/SpinLoader";
+import Image from "next/image";
 import { toast } from "sonner"; // Make sure sonner is installed
 
 export default function CreateBookForm() {
@@ -182,8 +183,10 @@ export default function CreateBookForm() {
 
                                 {coverPreview && (
                                     <div className="flex items-center space-x-4">
-                                        <div className="flex-shrink-0">
-                                            <img
+                                        <div className="shrink-0">
+                                            <Image
+                                                width={128}
+                                                height={176}
                                                 src={coverPreview}
                                                 alt="Cover preview"
                                                 className="w-32 h-44 object-cover rounded-lg shadow-md border border-gray-200"
