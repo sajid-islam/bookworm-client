@@ -35,7 +35,6 @@ export function AppSidebar({ ...props }) {
                 { title: "Overview", url: "/dashboard" },
                 { title: "Manage Books", url: "/dashboard/books" },
                 { title: "Manage Genres", url: "/dashboard/genres" },
-                { title: "Manage Users", url: "/dashboard/users" },
                 { title: "Moderate Reviews", url: "/dashboard/reviews" },
                 { title: "Manage Tutorials", url: "/dashboard/tutorials" },
             ],
