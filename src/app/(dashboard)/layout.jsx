@@ -4,13 +4,11 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const DashboardLayout = ({ children }) => {
     return (
-        <ProtectRoute allowedRole={"admin"}>
             <SidebarProvider>
                 {" "}
                 <AppSidebar />
                 <SidebarInset>{children}</SidebarInset>
             </SidebarProvider>{" "}
-        </ProtectRoute>
     );
 };
 
