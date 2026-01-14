@@ -5,6 +5,10 @@ export function proxy(request) {
     const user = request.cookies.get("user")?.value;
     const { pathname } = request.nextUrl;
 
+    if (pathname.startsWith("/api") || pathname.startsWith("/_next")) {
+        return NextResponse.next();
+    }
+
     const isAuthPage = pathname === "/login" || pathname === "/register";
 
     if (!token && !isAuthPage) {
